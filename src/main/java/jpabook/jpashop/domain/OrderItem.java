@@ -2,20 +2,21 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 public class OrderItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @Column(name = "ORDER_ID")
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
 
-    @Column(name = "ITEM_ID")
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ID")
+    private Item item;
 
     private int orderPrice;
     private int count;
@@ -28,20 +29,20 @@ public class OrderItem {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public Long getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public int getOrderPrice() {
