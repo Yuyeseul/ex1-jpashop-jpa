@@ -4,8 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.*;
 
 public class JpaMain {
 
@@ -19,10 +18,11 @@ public class JpaMain {
 
         try {
 
-            // 연관관계 매핑 - 단방향으로 설계 후 필요시 양방향 추가 설계가 좋음
+            Book book = new Book();
+            book.setName("jpa");
+            book.setAuthor("ys");
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            em.persist(book);
 
             tx.commit();
         } catch (Exception e) {
